@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第一次開戶指南｜Jimmy</title>
+<meta name="description" content="第一次開證券戶要準備什麼、怎麼開、開好之後怎麼開始。看完不懂的，LINE 問我。">
+<style>
+  :root { --paper: #F6EFE2; --card: #FBF7EE; --ink: #3E342B; --ink2: #7D6E5F; --line: #E4D8C4; --accent: #E2B34A; --green: #06C755; --red: #C8553D; }
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100svh; background: var(--paper); color: var(--ink); font-family: -apple-system, "PingFang TC", "Noto Sans TC", sans-serif; display: flex; justify-content: center; }
+  main { width: 100%; max-width: 480px; padding: 28px 16px 40px; }
+  .back { display: inline-block; color: var(--ink2); text-decoration: none; font-size: 14px; margin-bottom: 18px; }
+  h1 { font-size: 24px; margin: 0 0 8px; line-height: 1.35; }
+  .lead { color: var(--ink2); font-size: 15px; line-height: 1.7; margin: 0 0 24px; }
+  h2 { font-size: 18px; margin: 32px 0 12px; display: flex; align-items: center; gap: 8px; }
+  h2::before { content: ""; width: 6px; height: 20px; background: var(--accent); border-radius: 3px; }
+  .card { background: var(--card); border: 2px solid var(--ink); border-radius: 16px; padding: 16px; box-shadow: 4px 4px 0 var(--line); }
+  ul.check { list-style: none; margin: 0; padding: 0; }
+  ul.check li { padding: 8px 0 8px 30px; position: relative; line-height: 1.6; border-bottom: 1px dashed var(--line); }
+  ul.check li:last-child { border-bottom: 0; }
+  ul.check li::before { content: "☐"; position: absolute; left: 4px; top: 7px; font-size: 18px; }
+  ul.check small, .step small { display: block; color: var(--ink2); font-size: 13px; }
+  ol.steps { list-style: none; margin: 0; padding: 0; counter-reset: s; }
+  .step { counter-increment: s; position: relative; padding: 0 0 18px 48px; line-height: 1.6; }
+  .step::before { content: counter(s); position: absolute; left: 0; top: 0; width: 34px; height: 34px; line-height: 30px; text-align: center; font-weight: 700; background: var(--accent); border: 2px solid var(--ink); border-radius: 50%; }
+  .step:not(:last-child)::after { content: ""; position: absolute; left: 16px; top: 36px; bottom: 2px; border-left: 2px dashed var(--ink2); }
+  .step b { font-size: 16px; }
+  .warn { margin-top: 14px; background: #FBEDE7; border: 2px solid var(--red); border-radius: 12px; padding: 12px 14px; font-size: 14px; line-height: 1.7; }
+  .warn b { color: var(--red); }
+  details { background: var(--card); border: 2px solid var(--ink); border-radius: 14px; margin: 0 0 10px; box-shadow: 3px 3px 0 var(--line); }
+  summary { cursor: pointer; padding: 14px 40px 14px 14px; font-weight: 600; line-height: 1.5; list-style: none; position: relative; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "＋"; position: absolute; right: 14px; top: 13px; color: var(--ink2); }
+  details[open] summary::after { content: "－"; }
+  details p { margin: 0; padding: 0 14px 14px; line-height: 1.7; color: var(--ink); font-size: 15px; }
+  .me { line-height: 1.75; font-size: 15px; }
+  .me p { margin: 0 0 8px; }
+  .me p:last-child { margin: 0; }
+  .me small { color: var(--ink2); font-size: 13px; }
+  a.btn { display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; color: #fff; background: var(--green); border: 2px solid var(--green); border-radius: 16px; padding: 16px; margin: 20px 0 8px; font-size: 17px; font-weight: 700; box-shadow: 4px 4px 0 var(--line); }
+  a.btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--line); }
+  .hint { text-align: center; color: var(--ink2); font-size: 13px; margin: 0; }
+  .note { margin-top: 32px; font-size: 12px; color: var(--ink2); line-height: 1.7; text-align: center; }
+</style>
+</head>
+<body>
+<main>
+  <a class="back" href="./">← 回首頁</a>
+  <h1>第一次開證券戶<br>看這頁就夠了 📒</h1>
+  <p class="lead">我是聯邦證券的營業員 Jimmy。最常被朋友問「開戶要準備什麼？會不會很麻煩？」<br>整理成這頁，大概 3 分鐘看完。</p>
+
+  <h2>新開戶現在有的活動</h2>
+  <div class="card me">
+    <p>💰 <b>交割帳戶首月 15 萬內年利率 10%</b><br><small>用 New New Bank（聯邦數位帳戶）交割，開戶當月 21 日～次月 20 日，免任務</small></p>
+    <p>💰 <b>之後每月做一個任務，次月 40 萬內 3%</b><br><small>任務三選一：當月 3 筆定期定額用 NNB 扣款（每筆 ≥1,000 元、扣款日不同天）／推薦 2 位新戶／VISA 金融卡消費滿 1 萬；活動到 2027/1/20</small></p>
+    <p>🪙 <b>定期定額每筆 2 萬元以內，手續費只收 1 元</b></p>
+    <p class="hint" style="text-align:left">活動內容以聯邦證券、聯邦銀行公告為準；細節 LINE 問我最快。</p>
+  </div>
+
+  <h2>先準備這些</h2>
+  <div class="card">
+    <ul class="check">
+      <li>身分證<small>要年滿 18 歲；未滿 18 歲要爸媽（法定代理人）一起辦</small></li>
+      <li>第二證件<small>健保卡或駕照擇一</small></li>
+      <li>聯邦銀行帳戶（交割帳戶）<small>買股票的錢從這裡扣、賣股票的錢進這裡。已經有聯邦銀行帳戶可以直接綁；沒有的話，用手機開一個 New New Bank 數位帳戶就好</small></li>
+      <li>手機<small>線上開戶全程用手機就可以</small></li>
+    </ul>
+  </div>
+
+  <h2>開戶 4 個步驟</h2>
+  <ol class="steps">
+    <li class="step"><b>LINE 跟我說「開戶」</b><small>我傳開戶連結給你，有卡住的地方隨時問</small></li>
+    <li class="step"><b>線上填資料、拍證件</b><small>沒有聯邦銀行帳戶的，會先帶你開 NNB 數位帳戶當交割帳戶</small></li>
+    <li class="step"><b>等審核</b><small>通常幾個工作天；期間可能接到確認電話（照會），接起來回答就好</small></li>
+    <li class="step"><b>下載 App、把錢存進交割帳戶</b><small>新戶下單額度預設 20 萬，需要可以申請調高（最高 100 萬）；零股也能買</small></li>
+  </ol>
+  <div class="warn"><b>⚠️ 一定要知道：</b>買股票成交後，是在<b>第 2 個營業日</b>才從交割帳戶扣款（T+2）。下單前先確認帳戶裡的錢夠，扣款時錢不夠＝違約交割，會留下紀錄，非常麻煩。</div>
+
+  <h2>常見問題</h2>
+  <details><summary>開戶要錢嗎？</summary><p>證券戶開戶本身不用錢，NNB 數位帳戶也是手機線上開。</p></details>
+  <details><summary>要先放多少錢才能開始？</summary><p>沒有門檻。台股可以買「零股」，1 股就能買，幾百塊也能開始練習。</p></details>
+  <details><summary>已經在別家開過了，還能再開嗎？</summary><p>可以。不同券商可以各開一個戶，很多人會有兩家以上。</p></details>
+  <details><summary>想買美股怎麼辦？</summary><p>要另外開「複委託」帳戶，跟台股戶是分開的，可以台股戶開好之後再加開。</p></details>
+  <details><summary>定期定額是什麼？</summary><p>每個月固定一天、固定金額自動幫你買，不用自己盯盤，很多新手從這個開始。新戶每筆 2 萬元以內手續費只收 1 元。</p></details>
+  <details><summary>一般買賣的手續費多少？</summary><p>依下單方式不同，LINE 問我，我直接跟你說清楚。</p></details>
+
+  <h2>找我開戶會怎樣</h2>
+  <div class="card me">
+    <p>✅ 有問題的步驟我一步一步陪你弄</p>
+    <p>✅ 開好之後教你 App 怎麼看、怎麼下單、零股怎麼買</p>
+    <p>✅ 之後有看不懂的帳單、扣款問題，直接 LINE 問我</p>
+    <p>🙅 我不會叫你買哪一檔股票，買什麼你自己決定</p>
+  </div>
+
+  <a class="btn" href="https://line.me/ti/p/~0979129972">💬 想開戶，LINE 問我</a>
+  <p class="hint">加好友後傳「開戶」兩個字，我就知道了</p>
+
+  <p class="note">本頁為開戶流程說明，實際規定與活動以聯邦證券、聯邦銀行公告為準。<br>本帳號內容不構成任何投資建議或買賣推介；投資有風險，請自行審慎評估。</p>
+</main>
+</body>
+</html>
