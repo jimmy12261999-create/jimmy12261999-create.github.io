@@ -2,101 +2,213 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>第一次開戶指南｜Jimmy</title>
 <meta name="description" content="第一次開證券戶要準備什麼、怎麼開、開好之後怎麼開始。看完不懂的，LINE 問我。">
+<meta name="theme-color" content="#F6EFE2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800;900&display=swap" rel="stylesheet">
 <style>
-  :root { --paper: #F6EFE2; --card: #FBF7EE; --ink: #3E342B; --ink2: #7D6E5F; --line: #E4D8C4; --accent: #E2B34A; --green: #06C755; --red: #C8553D; }
+  /* 跟 IG 圖卡同一套手帳風：奶油紙＋點格、紙膠帶、清松手寫體（只收本頁用到的字，約幾十 KB） */
+  @font-face { font-family: 'JasonHand'; src: url('fonts/jason-open.woff2') format('woff2'); font-display: swap; }
+  :root {
+    --paper: #F6EFE2; --card: #FBF7EE; --dot: rgba(120,100,80,.13);
+    --ink: #3E342B; --ink2: #7D6E5F; --line: #E4D8C4;
+    --tape: rgba(226,179,74,.55); --tape2: rgba(127,163,138,.5); --tape3: rgba(233,180,174,.6);
+    --mustard: #F2D58A; --accent: #E2B34A; --green: #06C755; --red: #C8553D;
+    --hand: 'JasonHand', -apple-system, "PingFang TC", "Noto Sans TC", sans-serif;
+  }
   * { box-sizing: border-box; }
-  body { margin: 0; min-height: 100svh; background: var(--paper); color: var(--ink); font-family: -apple-system, "PingFang TC", "Noto Sans TC", sans-serif; display: flex; justify-content: center; }
-  main { width: 100%; max-width: 480px; padding: 28px 16px 40px; }
-  .back { display: inline-block; color: var(--ink2); text-decoration: none; font-size: 14px; margin-bottom: 18px; }
-  h1 { font-size: 24px; margin: 0 0 8px; line-height: 1.35; }
-  .lead { color: var(--ink2); font-size: 15px; line-height: 1.7; margin: 0 0 24px; }
-  h2 { font-size: 18px; margin: 32px 0 12px; display: flex; align-items: center; gap: 8px; }
-  h2::before { content: ""; width: 6px; height: 20px; background: var(--accent); border-radius: 3px; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; min-height: 100svh; color: var(--ink);
+    background-color: var(--paper);
+    background-image: radial-gradient(var(--dot) 1.4px, transparent 1.8px);
+    background-size: 22px 22px; background-position: 11px 11px;
+    font-family: -apple-system, "PingFang TC", "Noto Sans TC", sans-serif;
+    display: flex; justify-content: center;
+  }
+  main { width: 100%; max-width: 480px; padding: 20px 16px calc(110px + env(safe-area-inset-bottom)); }
+  .back { display: inline-block; color: var(--ink2); text-decoration: none; font-size: 14px; }
+  .hand { font-family: var(--hand); }
+  .num { font-family: 'Nunito', var(--hand); font-weight: 900; letter-spacing: -.02em; }
+  .hl { background: linear-gradient(transparent 58%, var(--mustard) 58%, var(--mustard) 92%, transparent 92%); padding: 0 2px; }
+
+  /* ── 封面 ── */
+  .cover { position: relative; margin: 18px 0 8px; background: var(--card); border: 2px solid var(--ink); border-radius: 20px; padding: 30px 18px 20px; box-shadow: 5px 5px 0 var(--line); text-align: center; }
+  .cover .tapetag { position: absolute; top: -14px; left: 50%; transform: translateX(-50%) rotate(-2.5deg); background: var(--tape); background-image: repeating-linear-gradient(45deg, rgba(255,255,255,.25) 0 8px, transparent 8px 16px); padding: 6px 20px 5px; font-family: var(--hand); font-size: 17px; white-space: nowrap; }
+  .avatar { width: 76px; height: 76px; line-height: 72px; margin: 4px auto 10px; font-size: 40px; background: var(--paper); border: 2px solid var(--ink); border-radius: 50%; box-shadow: 3px 3px 0 var(--line); }
+  h1 { font-family: var(--hand); font-weight: 700; font-size: 31px; line-height: 1.3; margin: 0 0 10px; }
+  .lead { color: var(--ink2); font-size: 15px; line-height: 1.7; margin: 0 0 16px; text-wrap: balance; }
+  .time { display: inline-block; font-family: var(--hand); font-size: 15px; color: var(--ink2); border: 1.5px dashed var(--ink2); border-radius: 99px; padding: 3px 12px; margin-bottom: 16px; }
+  nav.jump { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  nav.jump a { text-decoration: none; color: var(--ink); background: var(--paper); border: 2px solid var(--ink); border-radius: 12px; padding: 10px 4px 8px; font-family: var(--hand); font-size: 16px; line-height: 1.25; box-shadow: 2px 2px 0 var(--line); }
+  nav.jump a span { display: block; font-size: 20px; margin-bottom: 2px; }
+  nav.jump a:active { transform: translate(2px,2px); box-shadow: none; }
+
+  /* ── 段落標題：紙膠帶 ── */
+  h2 { scroll-margin-top: 16px; display: inline-block; margin: 38px 0 14px -4px; padding: 6px 16px 4px; font-family: var(--hand); font-weight: 700; font-size: 22px; background: var(--tape); background-image: repeating-linear-gradient(45deg, rgba(255,255,255,.25) 0 8px, transparent 8px 16px); transform: rotate(-1.5deg); }
+  h2.sage { background-color: var(--tape2); }
+  h2.pink { background-color: var(--tape3); }
+  section > h2 + * { clear: both; }
+
   .card { background: var(--card); border: 2px solid var(--ink); border-radius: 16px; padding: 16px; box-shadow: 4px 4px 0 var(--line); }
+  small { display: block; color: var(--ink2); font-size: 13px; line-height: 1.6; }
+
+  /* ── 活動：票券 ── */
+  .ticket { position: relative; display: flex; background: var(--card); border: 2px solid var(--ink); border-radius: 16px; box-shadow: 4px 4px 0 var(--line); overflow: hidden; }
+  .ticket .big { flex: 0 0 112px; background: var(--mustard); border-right: 2px dashed var(--ink); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 14px 6px; text-align: center; }
+  .ticket .big .num { font-size: 44px; line-height: 1; }
+  .ticket .big .num sup { font-size: 22px; vertical-align: 14px; }
+  .ticket .big .cap { font-family: var(--hand); font-size: 14px; margin-top: 6px; line-height: 1.3; }
+  .ticket .body { padding: 14px 14px 14px 18px; line-height: 1.55; }
+  .ticket .body b { font-size: 16px; }
+  .ticket::before, .ticket::after { content: ""; position: absolute; left: 101px; width: 20px; height: 20px; background: var(--paper); border: 2px solid var(--ink); border-radius: 50%; }
+  .ticket::before { top: -12px; } .ticket::after { bottom: -12px; }
+  .perks { margin-top: 14px; }
+  .perk { display: flex; gap: 12px; align-items: flex-start; padding: 12px 0; border-bottom: 1.5px dashed var(--line); line-height: 1.55; }
+  .perk:first-child { padding-top: 0; } .perk:last-of-type { border-bottom: 0; }
+  .perk .ico { flex: 0 0 auto; font-size: 22px; line-height: 1.2; }
+  .perk .tag { display: inline-block; font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 18px; background: var(--mustard); border-radius: 4px; padding: 0 5px; margin-right: 2px; }
+  .fine { color: var(--ink2); font-size: 12.5px; line-height: 1.6; margin: 10px 0 0; }
+
+  /* ── 準備清單 ── */
   ul.check { list-style: none; margin: 0; padding: 0; }
-  ul.check li { padding: 8px 0 8px 30px; position: relative; line-height: 1.6; border-bottom: 1px dashed var(--line); }
-  ul.check li:last-child { border-bottom: 0; }
-  ul.check li::before { content: "☐"; position: absolute; left: 4px; top: 7px; font-size: 18px; }
-  ul.check small, .step small { display: block; color: var(--ink2); font-size: 13px; }
-  ol.steps { list-style: none; margin: 0; padding: 0; counter-reset: s; }
-  .step { counter-increment: s; position: relative; padding: 0 0 18px 48px; line-height: 1.6; }
-  .step::before { content: counter(s); position: absolute; left: 0; top: 0; width: 34px; height: 34px; line-height: 30px; text-align: center; font-weight: 700; background: var(--accent); border: 2px solid var(--ink); border-radius: 50%; }
-  .step:not(:last-child)::after { content: ""; position: absolute; left: 16px; top: 36px; bottom: 2px; border-left: 2px dashed var(--ink2); }
+  ul.check li { padding: 10px 0 10px 34px; position: relative; line-height: 1.55; border-bottom: 1.5px dashed var(--line); }
+  ul.check li:last-child { border-bottom: 0; padding-bottom: 2px; }
+  ul.check li:first-child { padding-top: 2px; }
+  ul.check li::before { content: ""; position: absolute; left: 2px; top: 12px; width: 18px; height: 18px; border: 2px solid var(--ink); border-radius: 5px; background: var(--paper); }
+  ul.check li:first-child::before { top: 4px; }
+
+  /* ── 步驟 ── */
+  ol.steps { list-style: none; margin: 0; padding: 18px 16px 2px; counter-reset: s; }
+  .step { counter-increment: s; position: relative; padding: 0 0 20px 50px; line-height: 1.55; }
+  .step::before { content: counter(s); position: absolute; left: 0; top: -2px; width: 36px; height: 36px; line-height: 32px; text-align: center; font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 18px; background: var(--mustard); border: 2px solid var(--ink); border-radius: 50%; }
+  .step:nth-child(2)::before { background: #CFE0D3; }
+  .step:nth-child(3)::before { background: #F3D3CE; }
+  .step:nth-child(4)::before { background: #E8DCC6; }
+  .step:not(:last-child)::after { content: ""; position: absolute; left: 17px; top: 38px; bottom: 2px; border-left: 2px dashed var(--ink2); }
   .step b { font-size: 16px; }
-  .warn { margin-top: 14px; background: #FBEDE7; border: 2px solid var(--red); border-radius: 12px; padding: 12px 14px; font-size: 14px; line-height: 1.7; }
-  .warn b { color: var(--red); }
+  .warn { position: relative; margin-top: 18px; background: #FBEDE7; border: 2px solid var(--red); border-radius: 14px; padding: 16px 14px 14px; font-size: 14.5px; line-height: 1.75; }
+  .warn .pin { position: absolute; top: -13px; left: 14px; background: var(--red); color: #fff; font-family: var(--hand); font-size: 15px; padding: 2px 12px; border-radius: 99px; }
+
+  /* ── Q&A ── */
   details { background: var(--card); border: 2px solid var(--ink); border-radius: 14px; margin: 0 0 10px; box-shadow: 3px 3px 0 var(--line); }
-  summary { cursor: pointer; padding: 14px 40px 14px 14px; font-weight: 600; line-height: 1.5; list-style: none; position: relative; }
+  summary { cursor: pointer; padding: 14px 44px 14px 46px; font-weight: 600; line-height: 1.5; list-style: none; position: relative; }
   summary::-webkit-details-marker { display: none; }
-  summary::after { content: "＋"; position: absolute; right: 14px; top: 13px; color: var(--ink2); }
-  details[open] summary::after { content: "－"; }
-  details p { margin: 0; padding: 0 14px 14px; line-height: 1.7; color: var(--ink); font-size: 15px; }
-  .me { line-height: 1.75; font-size: 15px; }
-  .me p { margin: 0 0 8px; }
-  .me p:last-child { margin: 0; }
-  .me small { color: var(--ink2); font-size: 13px; }
-  a.btn { display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; color: #fff; background: var(--green); border: 2px solid var(--green); border-radius: 16px; padding: 16px; margin: 20px 0 8px; font-size: 17px; font-weight: 700; box-shadow: 4px 4px 0 var(--line); }
-  a.btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--line); }
+  summary::before { content: "Q"; position: absolute; left: 12px; top: 12px; width: 24px; height: 24px; line-height: 23px; text-align: center; font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 14px; background: var(--mustard); border-radius: 50%; }
+  summary::after { content: "＋"; position: absolute; right: 14px; top: 13px; color: var(--ink2); transition: transform .2s; }
+  details[open] summary::after { transform: rotate(45deg); }
+  details p { margin: 0 14px 14px; padding-top: 12px; border-top: 1.5px dashed var(--line); line-height: 1.75; font-size: 15px; }
+
+  /* ── 找我 ── */
+  .me p { margin: 0; padding: 9px 0; line-height: 1.6; font-size: 15px; border-bottom: 1.5px dashed var(--line); }
+  .me p:first-child { padding-top: 0; } .me p:last-child { border-bottom: 0; padding-bottom: 0; }
+
+  a.btn { display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; color: #fff; background: var(--green); border: 2px solid var(--ink); border-radius: 16px; padding: 16px; margin: 28px 0 8px; font-size: 17px; font-weight: 700; box-shadow: 4px 4px 0 var(--ink); }
+  a.btn:active { transform: translate(2px,2px); box-shadow: 2px 2px 0 var(--ink); }
   .hint { text-align: center; color: var(--ink2); font-size: 13px; margin: 0; }
   .note { margin-top: 32px; font-size: 12px; color: var(--ink2); line-height: 1.7; text-align: center; }
+
+  /* ── 底部固定 LINE 按鈕 ── */
+  .dock { position: fixed; left: 0; right: 0; bottom: 0; z-index: 10; display: flex; justify-content: center; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: linear-gradient(rgba(246,239,226,0), var(--paper) 35%); transition: transform .25s, opacity .25s; }
+  .dock.hide { transform: translateY(100%); opacity: 0; pointer-events: none; }
+  .dock a { width: 100%; max-width: 448px; display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; color: #fff; background: var(--green); border: 2px solid var(--ink); border-radius: 14px; padding: 13px; font-size: 16px; font-weight: 700; box-shadow: 3px 3px 0 var(--ink); }
+  .dock a:active { transform: translate(2px,2px); box-shadow: 1px 1px 0 var(--ink); }
+  .dock small { display: inline; color: rgba(255,255,255,.85); font-size: 13px; font-weight: 500; }
 </style>
 </head>
 <body>
 <main>
   <a class="back" href="./">← 回首頁</a>
-  <h1>第一次開證券戶<br>看這頁就夠了 📒</h1>
-  <p class="lead">我是聯邦證券的營業員 Jimmy。最常被朋友問「開戶要準備什麼？會不會很麻煩？」<br>整理成這頁，大概 3 分鐘看完。</p>
 
-  <h2>新開戶現在有的活動</h2>
-  <div class="card me">
-    <p>💰 <b>交割帳戶首月 15 萬內年利率 10%</b><br><small>用 New New Bank（聯邦數位帳戶）交割，開戶當月 21 日～次月 20 日，免任務</small></p>
-    <p>💰 <b>之後每月做一個任務，次月 40 萬內 3%</b><br><small>任務三選一：當月 3 筆定期定額用 NNB 扣款（每筆 ≥1,000 元、扣款日不同天）／推薦 2 位新戶／VISA 金融卡消費滿 1 萬；活動到 2027/1/20</small></p>
-    <p>🪙 <b>定期定額每筆 2 萬元以內，手續費只收 1 元</b></p>
-    <p class="hint" style="text-align:left">活動內容以聯邦證券、聯邦銀行公告為準；細節 LINE 問我最快。</p>
-  </div>
+  <header class="cover">
+    <div class="tapetag">第一次開戶指南</div>
+    <div class="avatar">📒</div>
+    <h1>第一次開證券戶<br>看這頁就夠了</h1>
+    <p class="lead">我是聯邦證券的營業員 Jimmy。最常被朋友問「開戶要準備什麼？會不會很麻煩？」整理成這頁。</p>
+    <div class="time">⏱ 大概 3 分鐘看完</div>
+    <nav class="jump">
+      <a href="#prep"><span>🧾</span>要準備什麼</a>
+      <a href="#steps"><span>👣</span>4 個步驟</a>
+      <a href="#faq"><span>💬</span>常見問題</a>
+    </nav>
+  </header>
 
-  <h2>先準備這些</h2>
-  <div class="card">
-    <ul class="check">
-      <li>身分證<small>要年滿 18 歲；未滿 18 歲要爸媽（法定代理人）一起辦</small></li>
-      <li>第二證件<small>健保卡或駕照擇一</small></li>
-      <li>聯邦銀行帳戶（交割帳戶）<small>買股票的錢從這裡扣、賣股票的錢進這裡。已經有聯邦銀行帳戶可以直接綁；沒有的話，用手機開一個 New New Bank 數位帳戶就好</small></li>
-      <li>手機<small>線上開戶全程用手機就可以</small></li>
-    </ul>
-  </div>
+  <section>
+    <h2 class="pink">新開戶現在有的活動</h2>
+    <div class="ticket">
+      <div class="big"><div class="num">10<sup>%</sup></div><div class="cap">首月活存<br>年利率</div></div>
+      <div class="body"><b>交割帳戶首月 15 萬內年利率 10%</b><small>用 New New Bank（聯邦數位帳戶）交割，開戶當月 21 日～次月 20 日，免任務</small></div>
+    </div>
+    <div class="card perks">
+      <div class="perk"><span class="ico">💰</span><div><b>之後每月做一個任務，次月 40 萬內 <span class="tag">3%</span></b><small>任務三選一：當月 3 筆定期定額用 NNB 扣款（每筆 ≥1,000 元、扣款日不同天）／推薦 2 位新戶／VISA 金融卡消費滿 1 萬；活動到 2027/1/20</small></div></div>
+      <div class="perk"><span class="ico">🪙</span><div><b>定期定額每筆 2 萬元以內，手續費只收 <span class="tag">1</span> 元</b></div></div>
+      <p class="fine">活動內容以聯邦證券、聯邦銀行公告為準；細節 LINE 問我最快。</p>
+    </div>
+  </section>
 
-  <h2>開戶 4 個步驟</h2>
-  <ol class="steps">
-    <li class="step"><b>LINE 跟我說「開戶」</b><small>我傳開戶連結給你，有卡住的地方隨時問</small></li>
-    <li class="step"><b>線上填資料、拍證件</b><small>沒有聯邦銀行帳戶的，會先帶你開 NNB 數位帳戶當交割帳戶</small></li>
-    <li class="step"><b>等審核</b><small>通常幾個工作天；期間可能接到確認電話（照會），接起來回答就好</small></li>
-    <li class="step"><b>下載 App、把錢存進交割帳戶</b><small>新戶下單額度預設 20 萬，需要可以申請調高（最高 100 萬）；零股也能買</small></li>
-  </ol>
-  <div class="warn"><b>⚠️ 一定要知道：</b>買股票成交後，是在<b>第 2 個營業日</b>才從交割帳戶扣款（T+2）。下單前先確認帳戶裡的錢夠，扣款時錢不夠＝違約交割，會留下紀錄，非常麻煩。</div>
+  <section>
+    <h2 id="prep" class="sage">先準備這些</h2>
+    <div class="card">
+      <ul class="check">
+        <li>身分證<small>要年滿 18 歲；未滿 18 歲要爸媽（法定代理人）一起辦</small></li>
+        <li>第二證件<small>健保卡或駕照擇一</small></li>
+        <li>聯邦銀行帳戶（交割帳戶）<small>買股票的錢從這裡扣、賣股票的錢進這裡。已經有聯邦銀行帳戶可以直接綁；沒有的話，用手機開一個 New New Bank 數位帳戶就好</small></li>
+        <li>手機<small>線上開戶全程用手機就可以</small></li>
+      </ul>
+    </div>
+  </section>
 
-  <h2>常見問題</h2>
-  <details><summary>開戶要錢嗎？</summary><p>證券戶開戶本身不用錢，NNB 數位帳戶也是手機線上開。</p></details>
-  <details><summary>要先放多少錢才能開始？</summary><p>沒有門檻。台股可以買「零股」，1 股就能買，幾百塊也能開始練習。</p></details>
-  <details><summary>已經在別家開過了，還能再開嗎？</summary><p>可以。不同券商可以各開一個戶，很多人會有兩家以上。</p></details>
-  <details><summary>想買美股怎麼辦？</summary><p>要另外開「複委託」帳戶，跟台股戶是分開的，可以台股戶開好之後再加開。</p></details>
-  <details><summary>定期定額是什麼？</summary><p>每個月固定一天、固定金額自動幫你買，不用自己盯盤，很多新手從這個開始。新戶每筆 2 萬元以內手續費只收 1 元。</p></details>
-  <details><summary>一般買賣的手續費多少？</summary><p>依下單方式不同，LINE 問我，我直接跟你說清楚。</p></details>
+  <section>
+    <h2 id="steps">開戶 4 個步驟</h2>
+    <ol class="steps card">
+      <li class="step"><b>LINE 跟我說「開戶」</b><small>我傳開戶連結給你，有卡住的地方隨時問</small></li>
+      <li class="step"><b>線上填資料、拍證件</b><small>沒有聯邦銀行帳戶的，會先帶你開 NNB 數位帳戶當交割帳戶</small></li>
+      <li class="step"><b>等審核</b><small>通常幾個工作天；期間可能接到確認電話（照會），接起來回答就好</small></li>
+      <li class="step"><b>下載 App、把錢存進交割帳戶</b><small>新戶下單額度預設 20 萬，需要可以申請調高（最高 100 萬）；零股也能買</small></li>
+    </ol>
+    <div class="warn"><span class="pin">⚠️ 一定要知道</span>買股票成交後，是在<b class="hl">第 2 個營業日</b>才從交割帳戶扣款（T+2）。下單前先確認帳戶裡的錢夠，扣款時錢不夠＝<b>違約交割</b>，會留下紀錄，非常麻煩。</div>
+  </section>
 
-  <h2>找我開戶會怎樣</h2>
-  <div class="card me">
-    <p>✅ 有問題的步驟我一步一步陪你弄</p>
-    <p>✅ 開好之後教你 App 怎麼看、怎麼下單、零股怎麼買</p>
-    <p>✅ 之後有看不懂的帳單、扣款問題，直接 LINE 問我</p>
-    <p>🙅 我不會叫你買哪一檔股票，買什麼你自己決定</p>
-  </div>
+  <section>
+    <h2 id="faq" class="sage">常見問題</h2>
+    <details><summary>開戶要錢嗎？</summary><p>證券戶開戶本身不用錢，NNB 數位帳戶也是手機線上開。</p></details>
+    <details><summary>要先放多少錢才能開始？</summary><p>沒有門檻。台股可以買「零股」，1 股就能買，幾百塊也能開始練習。</p></details>
+    <details><summary>已經在別家開過了，還能再開嗎？</summary><p>可以。不同券商可以各開一個戶，很多人會有兩家以上。</p></details>
+    <details><summary>想買美股怎麼辦？</summary><p>要另外開「複委託」帳戶，跟台股戶是分開的，可以台股戶開好之後再加開。</p></details>
+    <details><summary>定期定額是什麼？</summary><p>每個月固定一天、固定金額自動幫你買，不用自己盯盤，很多新手從這個開始。新戶每筆 2 萬元以內手續費只收 1 元。</p></details>
+    <details><summary>一般買賣的手續費多少？</summary><p>依下單方式不同，LINE 問我，我直接跟你說清楚。</p></details>
+  </section>
 
-  <a class="btn" href="https://line.me/ti/p/~0979129972">💬 想開戶，LINE 問我</a>
+  <section>
+    <h2 class="pink">找我開戶會怎樣</h2>
+    <div class="card me">
+      <p>✅ 有問題的步驟我一步一步陪你弄</p>
+      <p>✅ 開好之後教你 App 怎麼看、怎麼下單、零股怎麼買</p>
+      <p>✅ 之後有看不懂的帳單、扣款問題，直接 LINE 問我</p>
+      <p>🙅 我不會叫你買哪一檔股票，買什麼你自己決定</p>
+    </div>
+  </section>
+
+  <a class="btn" id="mainbtn" href="https://line.me/ti/p/~0979129972">💬 想開戶，LINE 問我</a>
   <p class="hint">加好友後傳「開戶」兩個字，我就知道了</p>
 
   <p class="note">本頁為開戶流程說明，實際規定與活動以聯邦證券、聯邦銀行公告為準。<br>本帳號內容不構成任何投資建議或買賣推介；投資有風險，請自行審慎評估。</p>
 </main>
+
+<div class="dock" id="dock"><a href="https://line.me/ti/p/~0979129972">💬 想開戶，LINE 問我 <small>傳「開戶」就好</small></a></div>
+
+<script>
+  // 頁尾那顆大按鈕出現時，把底部浮動按鈕收起來，避免兩顆重疊
+  (function () {
+    var dock = document.getElementById('dock'), btn = document.getElementById('mainbtn');
+    if (!('IntersectionObserver' in window)) return;
+    new IntersectionObserver(function (es) {
+      dock.classList.toggle('hide', es[0].isIntersecting);
+    }).observe(btn);
+  })();
+</script>
 </body>
 </html>
